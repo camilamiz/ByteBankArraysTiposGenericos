@@ -1,5 +1,4 @@
-﻿using ByteBank.Modelos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,26 +6,29 @@ using System.Threading.Tasks;
 
 namespace ByteBank.SistemaAgencia
 {
-    public class ListaDeContaCorrente
+    //Indica uma lista de tipos
+    //O T indica todos os lugares em que o tipo será substituído, é um tipo genérico
+    //Se colocarmos int, por exemplo, o tipo dessa lista será int
+    public class Lista<T>
     {
-        private ContaCorrente[] _itens;
+        private T[] _itens;
         private int _proximaPosicao;
 
-        public int Tamanho 
-        { 
-            get 
-            { 
-                return _proximaPosicao; 
-            } 
+        public int Tamanho
+        {
+            get
+            {
+                return _proximaPosicao;
+            }
         }
 
-        public ListaDeContaCorrente(int capacidadeInicial = 5)
+        public Lista(int capacidadeInicial = 5)
         {
-            _itens = new ContaCorrente[capacidadeInicial];
+            _itens = new T[capacidadeInicial];
             _proximaPosicao = 0;
         }
 
-        public void Adicionar(ContaCorrente item)
+        public void Adicionar(T item)
         {
             VerificarCapacidade(_proximaPosicao + 1);
 
@@ -36,15 +38,15 @@ namespace ByteBank.SistemaAgencia
         }
 
         //parms possibilita chamar o método com vários argumentos
-        public void AdicionarVarios(params ContaCorrente[] itens)
+        public void AdicionarVarios(params T[] itens)
         {
-            foreach(ContaCorrente conta in itens)
+            foreach (T item in itens)
             {
-                Adicionar(conta);
+                Adicionar(item);
             }
         }
 
-        public void Remover(ContaCorrente item)
+        public void Remover(T item)
         {
             int indiceItem = -1; //para sinalizar que é um valor inválido
 
@@ -64,10 +66,13 @@ namespace ByteBank.SistemaAgencia
             }
 
             _proximaPosicao--;
-            _itens[_proximaPosicao] = null;
+
+            //_itens[_proximaPosicao] = null;
+            //um int, ou bool, sempre apontam para um valor, não faz sentido serem nulos pois são tipos de valor
+            //se for ContaCorrente conta = null, isso é aceitável, pois é um tipo de referência
         }
 
-        public ContaCorrente GetItemNoIndice(int indice)
+        public T GetItemNoIndice(int indice)
         {
             if (indice < 0 || indice >= _proximaPosicao)
             {
@@ -81,7 +86,7 @@ namespace ByteBank.SistemaAgencia
         {
             for (int i = 0; i < _proximaPosicao; i++)
             {
-                ContaCorrente conta = _itens[i];
+                T item = _itens[i];
                 //Console.WriteLine($"Conta numero #{i}: {conta.Agencia} {conta.Numero}");
             }
         }
@@ -100,7 +105,7 @@ namespace ByteBank.SistemaAgencia
             }
 
             //Console.WriteLine("Aumentando capacidade da lista!");
-            ContaCorrente[] novoArray = new ContaCorrente[novoTamanho];
+            T[] novoArray = new T[novoTamanho];
 
             for (int i = 0; i < _itens.Length; i++)
             {
@@ -113,7 +118,7 @@ namespace ByteBank.SistemaAgencia
         }
 
         //Criando um indexador
-        public ContaCorrente this[int indice]
+        public T this[int indice]
         {
             get
             {
