@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ByteBank.Modelos;
 using ByteBank.Modelos.Funcionarios;
+using ByteBank.SistemaAgencia.Comparadores;
 using ByteBank.SistemaAgencia.Extensoes;
 
 namespace ByteBank.SistemaAgencia
@@ -12,6 +13,62 @@ namespace ByteBank.SistemaAgencia
     class Program
     {
         static void Main(string[] args)
+        {
+            var contas = new List<ContaCorrente>()
+            {
+                new ContaCorrente(99999, 57480),
+                new ContaCorrente(1, 45480),
+                new ContaCorrente(340, 48480),
+                new ContaCorrente(340, 48480),
+                new ContaCorrente(290, 18480)
+            };
+
+            //IComparable na classe ContaCorrente
+            //contas.Sort();
+            //IComparer
+            contas.Sort(new ComparadorContaCorrentePorAgencia());
+
+            foreach (var conta in contas)
+            {
+                Console.WriteLine($"Conta número {conta.Numero}, ag. {conta.Agencia}");
+            }
+
+            Console.ReadLine();
+        }
+
+        static void TestaSort()
+        {
+            var nomes = new List<string>() { "Guilherme", "Luana", "Wellington", "Ana" };
+            nomes.Sort();
+
+            foreach (var nome in nomes)
+            {
+                Console.WriteLine(nome);
+            }
+
+            var idades = new List<int>();
+
+            idades.Add(1);
+            idades.Add(5);
+            idades.Add(14);
+            idades.Add(25);
+            idades.Add(38);
+            idades.Add(61);
+            idades.Remove(25);
+
+            idades.AdicionarVarios(99, -1);
+            //ListExtensoes.AdicionarVarios(idades, 45, 89, 12);
+            idades.Sort();
+
+            for (int i = 0; i < idades.Count; i++)
+            {
+                Console.WriteLine(idades[i]);
+            }
+
+            Console.ReadLine();
+        }
+
+        static void TestaInferenciaDeTipoVariavel()
         {
             //usando var - fica bem mais enxuto
             //inferência de tipo de variável
