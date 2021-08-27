@@ -5,12 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using ByteBank.Modelos;
 using ByteBank.Modelos.Funcionarios;
+using ByteBank.SistemaAgencia.Extensoes;
 
 namespace ByteBank.SistemaAgencia
 {
     class Program
     {
         static void Main(string[] args)
+        {
+            
+            Console.ReadLine();
+        }
+
+        static void TestaMetodoDeExtensao()
         {
             List<int> idades = new List<int>();
             idades.Add(1);
@@ -20,11 +27,9 @@ namespace ByteBank.SistemaAgencia
             idades.Add(38);
             idades.Add(61);
             idades.Remove(25);
-            ListExtensoes.AdicionarVarios(idades, 2, 4566, 774, 3, 666);
 
-            //método de extensão
-            //extendemos o tipo List 
-            idades.AdicionarVarios(5, 446, 33, 32, 88);
+            idades.AdicionarVarios(45, 89, 12);
+            //ListExtensoes.AdicionarVarios(idades, 45, 89, 12);
 
             for (int i = 0; i < idades.Count; i++)
             {
