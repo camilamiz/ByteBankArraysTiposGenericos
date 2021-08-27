@@ -20,8 +20,6 @@ namespace ByteBank.SistemaAgencia
             idades.Adicionar(5);
             idades.AdicionarVarios(7, 14, 55, 35, 90);
 
-            int idadeSoma = 0;
-
             for (int i = 0; i < idades.Tamanho; i++)
             {
                 //não foi necessário fazer conversão de tipo agora - (int)idades[i]
