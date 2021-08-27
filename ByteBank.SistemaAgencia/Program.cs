@@ -13,7 +13,20 @@ namespace ByteBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
-            
+            //usando var - fica bem mais enxuto
+            //inferência de tipo de variável
+            var conta = new ContaCorrente(344, 3445666);
+            var gerenciador = new GerenciadorBonificacao();
+            var gerenciadores = new List<GerenciadorBonificacao>();
+
+            //não posso fazer var idade, sempre tenho que inicializar
+            var idade = 14;
+            var nome = "Alura";
+            nome.IndexOf('u');
+
+            var resultado = SomarVarios(1, 5, 9, 2);
+            Console.WriteLine(resultado);
+
             Console.ReadLine();
         }
 
