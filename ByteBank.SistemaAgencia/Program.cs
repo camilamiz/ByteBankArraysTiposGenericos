@@ -12,6 +12,30 @@ namespace ByteBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
+            List<int> idades = new List<int>();
+            idades.Add(1);
+            idades.Add(5);
+            idades.Add(14);
+            idades.Add(25);
+            idades.Add(38);
+            idades.Add(61);
+            idades.Remove(25);
+            ListExtensoes.AdicionarVarios(idades, 2, 4566, 774, 3, 666);
+
+            //método de extensão
+            //extendemos o tipo List 
+            idades.AdicionarVarios(5, 446, 33, 32, 88);
+
+            for (int i = 0; i < idades.Count; i++)
+            {
+                Console.WriteLine(idades[i]);
+            }
+
+            Console.ReadLine();
+        }
+
+        static void TestaTiposGenericos()
+        {
             Lista<int> idades = new Lista<int>();
 
             //não funciona mais. Agora só podemos adicionar int!
