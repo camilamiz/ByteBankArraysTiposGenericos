@@ -12,18 +12,19 @@ namespace ByteBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
-            ContaCorrente[] contas = new ContaCorrente[]
-                {
-                    new ContaCorrente(874, 5677878),
-                    new ContaCorrente(874, 5677844),
-                    new ContaCorrente(874, 5677855),
-                };
+            ListaDeContaCorrente lista = new ListaDeContaCorrente();
+            lista.Adicionar(new ContaCorrente(874, 567888));
+            lista.Adicionar(new ContaCorrente(874, 567899));
+            lista.Adicionar(new ContaCorrente(874, 567822));
+            lista.Adicionar(new ContaCorrente(874, 567822));
+            lista.Adicionar(new ContaCorrente(874, 567822));
+            lista.Adicionar(new ContaCorrente(874, 567822));
+            lista.Adicionar(new ContaCorrente(874, 567822));
+            lista.Adicionar(new ContaCorrente(874, 567822));
+            lista.Adicionar(new ContaCorrente(874, 567822));
+            lista.Adicionar(new ContaCorrente(874, 567822));
+            lista.Adicionar(new ContaCorrente(874, 567822));
 
-            for (int i = 0; i < contas.Length; i++)
-            {
-                ContaCorrente contaAtual = contas[i];
-                Console.WriteLine($"Conta {i} {contaAtual.Numero}");
-            }
             Console.ReadLine();
         }
 
@@ -47,6 +48,23 @@ namespace ByteBank.SistemaAgencia
             int media = acumulador / idades.Length;
             Console.WriteLine(media);
 
+            Console.ReadLine();
+        }
+
+        static void TestaArrayDeContaCorrente()
+        {
+            ContaCorrente[] contas = new ContaCorrente[]
+                {
+                    new ContaCorrente(874, 5677878),
+                    new ContaCorrente(874, 5677844),
+                    new ContaCorrente(874, 5677855),
+                };
+
+            for (int i = 0; i < contas.Length; i++)
+            {
+                ContaCorrente contaAtual = contas[i];
+                Console.WriteLine($"Conta {i} {contaAtual.Numero}");
+            }
             Console.ReadLine();
         }
     }
