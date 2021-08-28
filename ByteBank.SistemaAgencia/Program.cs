@@ -17,20 +17,53 @@ namespace ByteBank.SistemaAgencia
             var contas = new List<ContaCorrente>()
             {
                 new ContaCorrente(99999, 57480),
-                new ContaCorrente(1, 45480),
+                new ContaCorrente(1, 11111),
+                null,
                 new ContaCorrente(340, 48480),
-                new ContaCorrente(340, 48480),
-                new ContaCorrente(290, 18480)
+                new ContaCorrente(340, 999999),
+                null,
+                new ContaCorrente(290, 18480),
+                null
             };
 
             //IComparable na classe ContaCorrente
             //contas.Sort();
             //IComparer
-            contas.Sort(new ComparadorContaCorrentePorAgencia());
+            //contas.Sort(new ComparadorContaCorrentePorAgencia());
 
-            foreach (var conta in contas)
+            //O método orderby tem um retorno, por isso temos que guardar em uma variável
+            //(conta => conta.Numero) - expressão lambda
+            //IOrderedEnumerable<ContaCorrente> contasOrdenadas = contas.OrderBy(conta => conta.Numero);
+
+            //IEnumerable<ContaCorrente> contasNaoNulas = contas.Where(conta => conta != null);
+
+            ////o OrderBy não trata referências nulas, como fizemos no nosso Comparador
+            ////escrevemos o orderby por completo para entendermos melhor os tipos, mas ele pode ser simplificado com o var
+            ////tanto o orderby quanto o where são métodos de extenão e fazem parte da biblioteca Linq
+            ////var contasOrdenadas = contasNaoNulas.OrderBy(conta =>...);
+            //IOrderedEnumerable<ContaCorrente> contasOrdenadas = contasNaoNulas.OrderBy<ContaCorrente, int>(conta => 
+            //    {
+            //        //if (conta == null)
+            //        //{
+            //        //    //jogar referências nulas para o final da lista
+            //        //    return int.MaxValue;
+            //        //}
+
+            //        return conta.Numero;
+            //    }
+            //);
+
+            //SIMPLIFICANDO
+            var contasOrdenadas = contas
+                .Where(conta => conta != null)
+                .OrderBy(conta => conta.Numero);
+
+            foreach (var conta in contasOrdenadas)
             {
-                Console.WriteLine($"Conta número {conta.Numero}, ag. {conta.Agencia}");
+                //if (conta != null)
+                //{
+                    Console.WriteLine($"Conta número {conta.Numero}, ag. {conta.Agencia}");
+                //}
             }
 
             Console.ReadLine();
